@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Andy Ren is a software engineer in Burnaby, BC building backend integrations, data pipelines, and internal tools end to end." />
+    <meta property="og:title" content="Andy Ren · Software Engineer" />
+    <meta property="og:description" content="Backend integrations, data pipelines, and internal tools, owned end to end." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Andy Ren · Software Engineer" />
+    <meta name="twitter:description" content="Backend integrations, data pipelines, and internal tools, owned end to end." />
+    <meta name="twitter:image" content="/og.png" />
+    <meta name="theme-color" content="#0f172a" />
+    <title>Andy Ren · Software Engineer</title>
+    <script>
+      // Apply the saved theme before first paint to avoid a flash.
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          var dark = t ? t === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.classList.add('dark');
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

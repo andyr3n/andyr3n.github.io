@@ -22,7 +22,7 @@ export function Footer() {
         <div className="mt-8 flex flex-wrap gap-3">
           <a
             href={`mailto:${profile.email}`}
-            className="btn-glow inline-flex items-center gap-2 rounded-md bg-accent px-4 py-2.5 text-sm font-medium text-accent-fg"
+            className="btn-glow inline-flex w-full items-center justify-center gap-2 rounded-md bg-accent px-4 py-2.5 text-sm font-medium text-accent-fg sm:w-auto"
           >
             <Mail size={16} /> {profile.email}
           </a>

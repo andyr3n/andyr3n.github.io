@@ -17,7 +17,7 @@ All copy lives in [`src/data/resume.ts`](src/data/resume.ts): profile, stats, ex
 
 Before publishing:
 
-1. Drop your resume PDF into `public/` as `Andy_Ren_Resume.pdf` (or change `resumeUrl`).
+1. Keep your resume PDF in `public/` as `Andy_Ren_Resume.pdf` (or change `resumeUrl`). The path is prefixed with Vite's `BASE_URL`, so sub-path deploys work.
 2. Add repo / demo links to each project's `links` array as they become public.
 3. Once you have a domain, add `<meta property="og:url">` and make the `og:image` URL absolute in `index.html`, and add a `sitemap.xml` to `public/`.
 

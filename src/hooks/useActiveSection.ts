@@ -11,7 +11,7 @@ export function useActiveSection(ids: string[]): string | null {
       (entries) => {
         for (const e of entries) if (e.isIntersecting) setActive(e.target.id)
       },
-      { rootMargin: '-45% 0px -50% 0px', threshold: 0 },
+      { rootMargin: '-30% 0px -50% 0px', threshold: 0 },
     )
     els.forEach((el) => io.observe(el))
     return () => io.disconnect()

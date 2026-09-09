@@ -15,8 +15,8 @@ export const profile = {
   email: 'andyren2001@gmail.com',
   github: 'https://github.com/andyr3n',
   linkedin: 'https://www.linkedin.com/in/andyren01/',
-  // Drop your PDF into /public with this filename.
-  resumeUrl: '/Andy_Ren_Resume.pdf',
+  // PDF lives in /public. BASE_URL keeps it working on sub-path deploys (GitHub Pages project sites).
+  resumeUrl: `${import.meta.env.BASE_URL}Andy_Ren_Resume.pdf`,
   openTo: 'Open to Software Engineer roles · new grad / early career',
 }
 

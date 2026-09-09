@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" content="Andy Ren is a software engineer in Burnaby, BC building backend integrations, data pipelines, and internal tools end to end." />
     <meta property="og:title" content="Andy Ren · Software Engineer" />
     <meta property="og:description" content="Backend integrations, data pipelines, and internal tools, owned end to end." />
@@ -15,7 +17,7 @@
     <meta name="twitter:title" content="Andy Ren · Software Engineer" />
     <meta name="twitter:description" content="Backend integrations, data pipelines, and internal tools, owned end to end." />
     <meta name="twitter:image" content="/og.png" />
-    <meta name="theme-color" content="#0f172a" />
+    <meta name="theme-color" content="#0f1117" />
     <title>Andy Ren · Software Engineer</title>
     <script>
       // Apply the saved theme before first paint to avoid a flash.
@@ -24,12 +26,25 @@
           var t = localStorage.getItem('theme');
           var dark = t ? t === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
           if (dark) document.documentElement.classList.add('dark');
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) meta.setAttribute('content', dark ? '#0f1117' : '#fbfbfc');
         } catch (e) {}
       })();
     </script>
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <div style="font-family: system-ui, sans-serif; max-width: 40rem; margin: 4rem auto; padding: 0 1.25rem; line-height: 1.6">
+        <h1 style="margin: 0 0 0.25rem">Andy Ren</h1>
+        <p style="margin: 0 0 1rem; color: #555">Software Engineer · Burnaby, BC</p>
+        <p>This site needs JavaScript to render. You can still reach me at
+          <a href="mailto:andyren2001@gmail.com">andyren2001@gmail.com</a>, view my
+          <a href="/Andy_Ren_Resume.pdf">resume (PDF)</a>, or find me on
+          <a href="https://github.com/andyr3n">GitHub</a> and
+          <a href="https://www.linkedin.com/in/andyren01/">LinkedIn</a>.</p>
+      </div>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

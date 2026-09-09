@@ -24,7 +24,7 @@ export function SpotlightCard({ children, className = '', style, as: Tag = 'div'
       ref={ref as never}
       onMouseMove={onMove}
       style={style}
-      className={`spotlight glass rounded-xl border border-line transition-[border-color,transform,box-shadow] duration-300 hover:border-accent/40 ${className}`}
+      className={`spotlight glass rounded-xl border border-line hover:border-accent/40 ${className}`}
     >
       {children}
     </Tag>

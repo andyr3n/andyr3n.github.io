@@ -6,10 +6,20 @@ import { Nav } from './components/Nav'
 import { Projects } from './components/Projects'
 import { Skills } from './components/Skills'
 import { Stats } from './components/Stats'
+import { useEffect } from 'react'
 import { useTheme } from './hooks/useTheme'
 
 export default function App() {
   const { theme, toggle } = useTheme()
+
+  // The browser's own fragment scroll runs before React renders, so a deep link
+  // like /#projects lands at the top. Re-run it once the sections exist.
+  useEffect(() => {
+    const id = decodeURIComponent(window.location.hash.slice(1))
+    if (!id) return
+    const el = document.getElementById(id)
+    el?.scrollIntoView({ behavior: 'instant', block: 'start' })
+  }, [])
 
   return (
     <div className="min-h-dvh bg-bg text-fg">

@@ -16,10 +16,10 @@ export function Hero() {
         <div className="orb orb-b" />
         <div className="bg-grid absolute inset-0" />
       </div>
-      <div className="mx-auto max-w-5xl px-5 pb-20 pt-36 sm:px-8 sm:pb-28 sm:pt-44">
+      <div className="mx-auto max-w-5xl px-5 pb-16 pt-28 sm:px-8 sm:pb-28 sm:pt-44">
         <div className="fade-up flex items-center gap-2" style={delay(0)}>
           <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75 motion-reduce:animate-none" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
           </span>
           <span className="font-mono text-xs font-medium tracking-wide text-fg-muted">
@@ -86,10 +86,10 @@ export function Hero() {
 
         <a
           href="#experience"
-          className="fade-up mt-16 inline-flex items-center gap-2 font-mono text-xs text-fg-subtle transition-colors hover:text-accent"
+          className="fade-up mt-12 inline-flex items-center gap-2 py-3 font-mono text-xs text-fg-subtle transition-colors hover:text-accent sm:mt-16"
           style={delay(600)}
         >
-          <ArrowDown size={14} className="animate-bounce" /> scroll to experience
+          <ArrowDown size={14} className="animate-bounce motion-reduce:animate-none" /> scroll to experience
         </a>
       </div>
     </section>

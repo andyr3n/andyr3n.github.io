@@ -4,7 +4,10 @@ import { profile } from '../data/resume'
 
 export function Footer() {
   return (
-    <footer id="contact" className="scroll-mt-24 border-t border-line">
+    <footer id="contact" className="relative isolate scroll-mt-24 overflow-hidden border-t border-line">
+      <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
+        <div className="orb orb-b left-1/2! right-auto! top-1/3! -translate-x-1/2! opacity-[calc(var(--orb-opacity)*0.6)]!" />
+      </div>
       <div className="mx-auto max-w-5xl px-5 py-20 sm:px-8 sm:py-24">
         <p className="font-mono text-xs font-medium uppercase tracking-[0.2em] text-accent">
           Contact
@@ -19,7 +22,7 @@ export function Footer() {
         <div className="mt-8 flex flex-wrap gap-3">
           <a
             href={`mailto:${profile.email}`}
-            className="inline-flex items-center gap-2 rounded-md bg-accent px-4 py-2.5 text-sm font-medium text-accent-fg transition-opacity hover:opacity-90"
+            className="btn-glow inline-flex items-center gap-2 rounded-md bg-accent px-4 py-2.5 text-sm font-medium text-accent-fg"
           >
             <Mail size={16} /> {profile.email}
           </a>
@@ -28,7 +31,7 @@ export function Footer() {
             target="_blank"
             rel="noreferrer"
             aria-label="GitHub"
-            className="inline-flex items-center gap-2 rounded-md border border-line bg-bg-elevated px-3 py-2.5 text-sm text-fg transition-colors hover:border-line-strong"
+            className="glass inline-flex items-center gap-2 rounded-md border border-line px-3 py-2.5 text-sm text-fg transition-all duration-300 hover:-translate-y-px hover:border-accent/40 hover:bg-accent-soft"
           >
             <GithubIcon size={16} /> GitHub
           </a>
@@ -37,7 +40,7 @@ export function Footer() {
             target="_blank"
             rel="noreferrer"
             aria-label="LinkedIn"
-            className="inline-flex items-center gap-2 rounded-md border border-line bg-bg-elevated px-3 py-2.5 text-sm text-fg transition-colors hover:border-line-strong"
+            className="glass inline-flex items-center gap-2 rounded-md border border-line px-3 py-2.5 text-sm text-fg transition-all duration-300 hover:-translate-y-px hover:border-accent/40 hover:bg-accent-soft"
           >
             <LinkedinIcon size={16} /> LinkedIn
           </a>

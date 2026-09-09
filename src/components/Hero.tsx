@@ -6,13 +6,17 @@ import { Rich } from './Rich'
 const delay = (ms: number) => ({ animationDelay: `${ms}ms` })
 
 const secondaryBtn =
-  'inline-flex items-center gap-2 rounded-md border border-line bg-bg-elevated px-4 py-2.5 text-sm font-medium text-fg transition-colors hover:border-line-strong'
+  'glass inline-flex items-center gap-2 rounded-md border border-line px-4 py-2.5 text-sm font-medium text-fg transition-all duration-300 hover:-translate-y-px hover:border-accent/40 hover:bg-accent-soft'
 
 export function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden">
-      <div className="bg-grid pointer-events-none absolute inset-0 -z-10" aria-hidden="true" />
-      <div className="mx-auto max-w-5xl px-5 pb-20 pt-20 sm:px-8 sm:pb-28 sm:pt-28">
+    <section id="top" className="relative isolate overflow-hidden">
+      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
+        <div className="orb orb-a" />
+        <div className="orb orb-b" />
+        <div className="bg-grid absolute inset-0" />
+      </div>
+      <div className="mx-auto max-w-5xl px-5 pb-20 pt-36 sm:px-8 sm:pb-28 sm:pt-44">
         <div className="fade-up flex items-center gap-2" style={delay(0)}>
           <span className="relative flex h-2 w-2">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
@@ -24,17 +28,22 @@ export function Hero() {
         </div>
 
         <h1
-          className="fade-up mt-6 text-5xl font-semibold tracking-tight text-fg sm:text-6xl md:text-7xl"
+          className="fade-up text-display mt-6 pb-1 text-5xl font-semibold tracking-tight sm:text-6xl md:text-7xl"
           style={delay(80)}
         >
           {profile.name}
         </h1>
 
-        <p className="fade-up mt-4 text-lg text-fg-muted sm:text-xl" style={delay(160)}>
+        <p
+          className="fade-up mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 text-base text-fg-muted sm:text-xl"
+          style={delay(160)}
+        >
           <span className="font-medium text-fg">{profile.role}</span>
           {profile.focus.map((f) => (
-            <span key={f}>
-              <span className="mx-2 text-accent">·</span>
+            <span key={f} className="inline-flex items-center gap-2">
+              <span aria-hidden="true" className="text-accent">
+                ·
+              </span>
               {f}
             </span>
           ))}
@@ -57,7 +66,7 @@ export function Hero() {
         <div className="fade-up mt-8 flex flex-wrap items-center gap-3" style={delay(400)}>
           <a
             href={`mailto:${profile.email}`}
-            className="inline-flex items-center gap-2 rounded-md bg-accent px-4 py-2.5 text-sm font-medium text-accent-fg shadow-sm transition-opacity hover:opacity-90"
+            className="btn-glow inline-flex items-center gap-2 rounded-md bg-accent px-4 py-2.5 text-sm font-medium text-accent-fg"
           >
             <Mail size={16} /> Get in touch
           </a>

@@ -4,10 +4,14 @@ const supportsObserver = typeof window !== 'undefined' && 'IntersectionObserver'
 
 /**
  * Marks an element visible once it scrolls into view.
- * Returns [ref, className]; className is `reveal` then `reveal is-visible`.
+ * Returns [ref, className, visible]; className is `reveal` then `reveal is-visible`.
  * Falls back to always-visible when IntersectionObserver is unavailable.
  */
-export function useReveal<T extends HTMLElement>(): [React.RefObject<T | null>, string] {
+export function useReveal<T extends HTMLElement>(): [
+  React.RefObject<T | null>,
+  string,
+  boolean,
+] {
   const ref = useRef<T>(null)
   const [visible, setVisible] = useState(!supportsObserver)
 
@@ -27,5 +31,5 @@ export function useReveal<T extends HTMLElement>(): [React.RefObject<T | null>, 
     return () => io.disconnect()
   }, [])
 
-  return [ref, visible ? 'reveal is-visible' : 'reveal']
+  return [ref, visible ? 'reveal is-visible' : 'reveal', visible]
 }

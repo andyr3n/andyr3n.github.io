@@ -1,15 +1,17 @@
 import { GraduationCap } from 'lucide-react'
 import { education } from '../data/resume'
 import { Section } from './Section'
+import { SpotlightCard } from './SpotlightCard'
 
 export function Education() {
   return (
     <Section id="education" eyebrow="Education" title="Where I studied">
       <ul className="space-y-4">
         {education.map((e) => (
-          <li
+          <SpotlightCard
+            as="li"
             key={e.school}
-            className="flex flex-col gap-4 rounded-xl border border-line bg-bg-elevated p-6 sm:flex-row sm:items-center sm:justify-between"
+            className="flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between"
           >
             <div className="flex items-start gap-4">
               <span className="mt-0.5 rounded-lg bg-accent-soft p-2.5 text-accent">
@@ -24,7 +26,7 @@ export function Education() {
               <p className="font-mono text-xs text-fg-subtle">{e.period}</p>
               <p className="mt-0.5 text-sm text-fg-subtle">{e.location}</p>
             </div>
-          </li>
+          </SpotlightCard>
         ))}
       </ul>
     </Section>

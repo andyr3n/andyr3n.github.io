@@ -22,6 +22,12 @@
   --accent-fg: oklch(100% 0 0);
   --accent-soft: oklch(94% 0.04 262);
   --ring: oklch(52% 0.21 262 / 0.35);
+  --glass: oklch(100% 0 0 / 0.65);
+  --glass-strong: oklch(100% 0 0 / 0.85);
+  --spot: oklch(52% 0.21 262 / 0.10);
+  --orb-a: oklch(70% 0.16 262);
+  --orb-b: oklch(72% 0.14 300);
+  --orb-opacity: 0.28;
   color-scheme: light;
 }
 
@@ -37,6 +43,12 @@
   --accent-fg: oklch(15% 0.012 260);
   --accent-soft: oklch(76% 0.13 250 / 0.12);
   --ring: oklch(76% 0.13 250 / 0.4);
+  --glass: oklch(19% 0.014 260 / 0.55);
+  --glass-strong: oklch(19% 0.014 260 / 0.8);
+  --spot: oklch(76% 0.13 250 / 0.14);
+  --orb-a: oklch(60% 0.18 262);
+  --orb-b: oklch(55% 0.17 300);
+  --orb-opacity: 0.45;
   color-scheme: dark;
 }
 
@@ -52,6 +64,8 @@
   --color-accent-fg: var(--accent-fg);
   --color-accent-soft: var(--accent-soft);
   --color-ring: var(--ring);
+  --color-glass: var(--glass);
+  --color-glass-strong: var(--glass-strong);
 }
 
 @layer base {
@@ -115,6 +129,121 @@
     }
     .fade-up {
       animation: none;
+    }
+  }
+
+  /* Staggered children: give each child an inline --i */
+  .stagger > * {
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+      opacity 0.5s ease-out,
+      transform 0.5s ease-out;
+    transition-delay: calc(var(--i, 0) * 70ms);
+  }
+  .is-visible .stagger > *,
+  .is-visible.stagger > * {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Frosted glass surface */
+  .glass {
+    background: var(--glass);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    backdrop-filter: blur(16px) saturate(140%);
+  }
+
+  /* Cursor-following spotlight on cards (vars set by SpotlightCard) */
+  .spotlight {
+    position: relative;
+    isolation: isolate;
+  }
+  .spotlight::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    background: radial-gradient(
+      420px circle at var(--mx, 50%) var(--my, 50%),
+      var(--spot),
+      transparent 65%
+    );
+  }
+  .spotlight:hover::before {
+    opacity: 1;
+  }
+
+  /* Drifting gradient orbs behind the hero */
+  .orb {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(90px);
+    opacity: var(--orb-opacity);
+    will-change: transform;
+    animation: drift 22s ease-in-out infinite alternate;
+  }
+  .orb-a {
+    width: 560px;
+    height: 560px;
+    left: -12%;
+    top: -30%;
+    background: var(--orb-a);
+  }
+  .orb-b {
+    width: 480px;
+    height: 480px;
+    right: -10%;
+    top: 5%;
+    background: var(--orb-b);
+    animation-delay: -11s;
+    animation-duration: 26s;
+  }
+  @keyframes drift {
+    from {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    to {
+      transform: translate3d(80px, 60px, 0) scale(1.12);
+    }
+  }
+
+  /* Subtle vertical gradient on display text */
+  .text-display {
+    background: linear-gradient(180deg, var(--fg) 0%, color-mix(in oklch, var(--fg) 72%, transparent) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Primary button glow */
+  .btn-glow {
+    box-shadow: 0 0 0 0 var(--ring);
+    transition:
+      box-shadow 0.3s ease,
+      transform 0.2s ease;
+  }
+  .btn-glow:hover {
+    box-shadow: 0 0 28px 0 var(--ring);
+    transform: translateY(-1px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .stagger > * {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+    .orb {
+      animation: none;
+    }
+    .btn-glow,
+    .btn-glow:hover {
+      transform: none;
     }
   }
 

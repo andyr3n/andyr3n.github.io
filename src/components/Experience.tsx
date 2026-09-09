@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react'
 import { ExternalLink } from 'lucide-react'
 import { experience } from '../data/resume'
 import { Rich } from './Rich'
@@ -41,23 +42,24 @@ export function Experience() {
             </div>
 
             {/* Roles timeline */}
-            <ol className="relative border-l border-line pl-8">
+            <ol className="relative pl-8 before:absolute before:bottom-0 before:left-0 before:top-0 before:w-px before:bg-linear-to-b before:from-accent before:via-line-strong before:to-transparent">
               {job.roles.map((role, i) => (
                 <li key={role.title} className={i > 0 ? 'mt-12' : ''}>
                   <span
                     aria-hidden="true"
                     className={`absolute -left-[5px] mt-2 h-[9px] w-[9px] rounded-full ring-4 ring-bg ${
-                      i === 0 ? 'bg-accent' : 'bg-line-strong'
+                      i === 0 ? 'bg-accent shadow-[0_0_12px_var(--ring)]' : 'bg-line-strong'
                     }`}
                   />
                   <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
                     <h4 className="text-base font-semibold text-fg">{role.title}</h4>
                     <time className="font-mono text-xs text-fg-subtle">{role.period}</time>
                   </div>
-                  <ul className="mt-4 space-y-3">
+                  <ul className="stagger mt-4 space-y-3">
                     {role.bullets.map((b, j) => (
                       <li
                         key={j}
+                        style={{ '--i': j } as CSSProperties}
                         className="relative pl-4 text-[15px] leading-relaxed text-fg-muted before:absolute before:left-0 before:top-[0.7em] before:h-1 before:w-1 before:rounded-full before:bg-accent"
                       >
                         <Rich text={b} />

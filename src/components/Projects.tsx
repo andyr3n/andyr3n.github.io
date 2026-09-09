@@ -1,7 +1,9 @@
+import type { CSSProperties } from 'react'
 import { ArrowUpRight } from 'lucide-react'
 import { projects, type Project } from '../data/resume'
 import { Rich } from './Rich'
 import { Section } from './Section'
+import { SpotlightCard } from './SpotlightCard'
 import { Tag } from './Tag'
 
 export function Projects() {
@@ -15,13 +17,13 @@ export function Projects() {
       title="Things I’ve built"
       description="Side projects where I get to own the whole stack, from platform constraints to the last unit test."
     >
-      <div className="space-y-5">
-        {featured.map((p) => (
-          <ProjectCard key={p.name} project={p} featured />
+      <div className="stagger space-y-5">
+        {featured.map((p, i) => (
+          <ProjectCard key={p.name} project={p} featured index={i} />
         ))}
-        <div className="grid gap-5 md:grid-cols-2">
-          {rest.map((p) => (
-            <ProjectCard key={p.name} project={p} />
+        <div className="stagger grid gap-5 md:grid-cols-2">
+          {rest.map((p, i) => (
+            <ProjectCard key={p.name} project={p} index={i + 1} />
           ))}
         </div>
       </div>
@@ -29,10 +31,20 @@ export function Projects() {
   )
 }
 
-function ProjectCard({ project, featured = false }: { project: Project; featured?: boolean }) {
+function ProjectCard({
+  project,
+  featured = false,
+  index = 0,
+}: {
+  project: Project
+  featured?: boolean
+  index?: number
+}) {
   return (
-    <article
-      className={`group relative flex flex-col rounded-xl border border-line bg-bg-elevated p-6 transition-all hover:-translate-y-0.5 hover:border-line-strong hover:shadow-lg hover:shadow-black/5 dark:hover:shadow-black/30 ${
+    <SpotlightCard
+      as="article"
+      style={{ '--i': index } as CSSProperties}
+      className={`group flex flex-col p-6 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/5 dark:hover:shadow-black/40 ${
         featured ? 'sm:p-8' : ''
       }`}
     >
@@ -53,7 +65,7 @@ function ProjectCard({ project, featured = false }: { project: Project; featured
         <time className="font-mono text-xs text-fg-subtle">{project.period}</time>
       </div>
 
-      <ul className={`mt-5 space-y-3 ${featured ? 'md:columns-1' : ''}`}>
+      <ul className="mt-5 space-y-3">
         {project.bullets.map((b, i) => (
           <li
             key={i}
@@ -86,6 +98,6 @@ function ProjectCard({ project, featured = false }: { project: Project; featured
           </div>
         )}
       </div>
-    </article>
+    </SpotlightCard>
   )
 }
